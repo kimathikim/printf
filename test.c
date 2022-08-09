@@ -14,7 +14,7 @@ int main(void)
 
 	n = _printf("hello %c", 'v');
 	printf("\n n - %d \n", n);
-	n = _printf("hello %s", 'victor');
+	n = _printf("hello %s", "victor");
 	printf("\n n - %d \n", n);
 	n = _printf("hello %%");
 	printf("\n n - %d \n", n);
