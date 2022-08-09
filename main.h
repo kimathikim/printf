@@ -11,5 +11,5 @@ int _strlen(char *s);
 char *chartos(char c);
 char *nothing_found(char c);
 char *rev_string(char *a, int n);
-
+int print_decimal(int num);
 #endif
