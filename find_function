@@ -1,35 +1,39 @@
-##include "main.h"
-#include <stddef.h>
+#include "main.h"
 
 /**
- * get_spec_func - check specifier type and return function
- *@s: type to check
- *Return: pointer to function to use
+ * get_spec_func - identifiers correct print function using specifier character
+ * @spec: specifier character
+ *
+ * Return: function
  */
 
-char *(*get_spec_func(char s))(va_list)
+int (*get_spec_func(char spec))(va_list)
 {
 	int i;
-	s_types spec_types[] = {
-		{"c", char_find},
-		{"s", string_find},
-		{"%", percent_find},
-		{"d", int_find},
-		{"i", int_find},
-		{"u", unsigned_find},
-		{"o", octal_find},
-		{"r", rev_find},
-		{"R", rot13_find},
-		{"b", binary_find},
-		{"x", hex_find},
-		{"X", HEX_find},
-		{"p", address_find},
+
+	spec_t type[] = {
+		{"c", print_char},
+		{"%", print_percent},
+		{"i", print_integer},
+		{"d", print_decimal},
+		{"s", print_string},
+		{"S", print_special_string},
+		{"R", print_rot13},
+		{"r", print_reverse},
+		{"p", print_pointer},
+		{"b", print_binary},
+		{"u", print_unsigned},
+		{"o", print_octal},
+		{"x", print_lil_hex},
+		{"X", print_big_hex},
 		{NULL, NULL}
 	};
 
-	for (i = 0; spec_types[i].spec; i++)
-		if (s == *spec_types[i].spec)
-			return (spec_types[i].f);
+	for (i = 0; type[i].sym != NULL; i++)
+	{
+		if (spec == *type[i].sym)
+			return (type[i].f);
+	}
 
-	return (spec_types[i].f);
+	return (NULL);
 }
