@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 		{
 			count = count + _putchar(format[i]);
 		}
-		else if (format[i] == '%' && format[i + 1] != ' ')
+		else (format[i] == '%' && format[i + 1] != ' ')
 		{
 			switch (format[i + 1])
 					{
